@@ -9,19 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-oauth/google": "^0.2.6",
     "@sanity/cli": "^2.30.2",
     "@sanity/client": "^3.3.2",
     "autoprefixer": "^10.4.7",
     "axios": "^0.27.2",
+    "jwt-decode": "^3.1.2",
     "next": "12.2.0",
     "postcss": "^8.4.14",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-google-login": "^5.2.2",
     "react-icons": "^4.4.0",
     "tailwindcss": "^3.1.5",
     "uuidv4": "^6.2.13",
-    "zustand": "^4.0.0-rc.1"
+    "zustand": "^4.0.0-rc.4"
   },
   "devDependencies": {
     "@types/node": "18.0.3",

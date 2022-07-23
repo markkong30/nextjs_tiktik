@@ -12,7 +12,7 @@ export const allPostsQuery = () => {
       postedBy->{
         _id,
         userName,
-        image
+        image,
       },
     likes,
     comments[]{
