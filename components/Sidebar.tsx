@@ -7,13 +7,14 @@ import { ImCancelCircle } from "react-icons/im";
 import SuggestedAccounts from "./SuggestedAccounts";
 import Discover from "./Discover";
 import Footer from "./Footer";
+import useAuthStore from "../store/authStore";
 
 const Sidebar = () => {
 	const [showSidebar, setShowSidebar] = useState(true);
-	const userProfile = false;
+	const { fetchAllUsers, allUsers } = useAuthStore();
 	const { pathname } = useRouter();
 
-	const activeLink = "flex items-center gap-3 hover:bg-primary p-3 justify-center xl:justify-start cursor-pointer font-semibold text-secondary rounded";
+	const activeLink = "flex items-center gap-3 hover:bg-primary p-3 justify-center xl:justify-start cursor-pointer font-semibold text-secondary rounded ";
 
 	const normalLink = "flex items-center gap-3 hover:bg-primary p-3 justify-center xl:justify-start cursor-pointer font-semibold rounded";
 
@@ -36,10 +37,7 @@ const Sidebar = () => {
 					</div>
 
 					<Discover />
-					{/* <SuggestedAccounts
-            fetchAllUsers={fetchAllUsers}
-            allUsers={allUsers}
-          /> */}
+					<SuggestedAccounts fetchAllUsers={fetchAllUsers} allUsers={allUsers} />
 					<Footer />
 				</div>
 			)}

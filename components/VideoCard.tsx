@@ -24,7 +24,8 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
 	const videoRef = useRef<HTMLVideoElement>(null);
 
 	const onVideoPress = (e: React.MouseEvent<HTMLElement>) => {
-		e.stopPropagation();
+		// e.stopPropagation();
+		console.log("here");
 		if (isPlaying) {
 			videoRef?.current?.pause();
 			setIsPlaying(false);
@@ -35,12 +36,15 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
 	};
 
 	const onMutePress = (e: React.MouseEvent<HTMLElement>) => {
-		e.stopPropagation();
-
-		if (isVideoMuted) {
-			setIsVideoMuted(false);
-		} else {
-			setIsVideoMuted(true);
+		// e.stopPropagation();
+		if (videoRef.current) {
+			if (isVideoMuted) {
+				setIsVideoMuted(false);
+				videoRef.current.muted = false;
+			} else {
+				setIsVideoMuted(true);
+				videoRef.current.muted = true;
+			}
 		}
 	};
 
@@ -49,7 +53,7 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
 			<div>
 				<div className="flex gap-3 p-2 cursor-pointer font-semibold rounded ">
 					<div className="md:w-16 md:h-16 w-10 h-10">
-						<Link href={"/"}>
+						<Link href={`/profile/${postedBy?._id}`}>
 							<>
 								<Image width={62} height={62} className="rounded-full" src={postedBy.image} alt="user-profile" layout="responsive" />
 							</>
@@ -65,7 +69,7 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
 								<p className="capitalize font-medium text-xs text-gray-500 hidden md:block">{postedBy.userName}</p>
 							</div>
 						</Link>
-						<Link href={""}>
+						<Link href={`/detail/${post._id}`}>
 							<p className="mt-2 font-normal ">{caption}</p>
 						</Link>
 					</div>
@@ -73,8 +77,8 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
 			</div>
 
 			<div className="lg:ml-20 flex gap-4 relative">
-				<div onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)} onClick={onVideoPress} className="rounded-3xl">
-					<Link href={""}>
+				<div onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)} className="rounded-3xl">
+					<Link href={`/detail/${post._id}`}>
 						<video
 							loop
 							ref={videoRef}

@@ -34,7 +34,7 @@ const Navbar = () => {
 						{userProfile.image && (
 							<Link href={`/profile/${userProfile._id}`}>
 								<div>
-									<img className="rounded-full cursor-pointer" src={userProfile.image} alt="user" width={40} height={40} />
+									<img className="rounded-full cursor-pointer" src={userProfile.image} alt={userProfile.userName} width={40} height={40} />
 								</div>
 							</Link>
 						)}
