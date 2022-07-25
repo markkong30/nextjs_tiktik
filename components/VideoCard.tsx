@@ -24,7 +24,6 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
 
 	const onVideoPress = (e: React.MouseEvent<HTMLElement>) => {
 		// e.stopPropagation();
-		console.log("here");
 		if (isPlaying) {
 			videoRef?.current?.pause();
 			setIsPlaying(false);

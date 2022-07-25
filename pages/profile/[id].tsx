@@ -90,7 +90,6 @@ export default Profile;
 
 export const getServerSideProps = async ({ params: { id } }: IParams) => {
 	const res = await axios.get(`${BASE_URL}/api/profile/${id}`);
-	console.log(res.data);
 
 	return {
 		props: {

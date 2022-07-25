@@ -16,7 +16,6 @@ interface IParams {
 }
 
 const Home: NextPage<IProps> = ({ videos }) => {
-	console.log(videos);
 	return (
 		<div className="flex flex-col gap-10 videos h-full">
 			{videos?.length > 0 ? (

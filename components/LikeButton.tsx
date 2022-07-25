@@ -24,7 +24,6 @@ const LikeButton: NextPage<IProps> = ({ handleDislike, handleLike, likes }) => {
 		}
 	}, [filterLikes, likes]);
 
-	console.log(likes);
 	return (
 		<div className={` gap-6`}>
 			<div className="mt-4 flex flex-col justify-center items-center cursor-pointer">
