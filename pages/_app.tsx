@@ -28,7 +28,6 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 					</div>
 				</div>
 			</div>
-			//{" "}
 		</GoogleOAuthProvider>
 	);
 };
