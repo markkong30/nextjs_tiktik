@@ -25,7 +25,6 @@ const SearchResult: NextPage<IProps> = ({ videos }) => {
 	const { allUsers } = useAuthStore();
 	const router = useRouter();
 	const searchTerm = router.query.searchTerm as string;
-	console.log(videos, searchTerm);
 
 	const accounts = isAccounts ? "border-b-2 border-black" : "text-gray-400";
 	const isVideos = !isAccounts ? "border-b-2 border-black" : "text-gray-400";

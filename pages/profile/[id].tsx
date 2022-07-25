@@ -88,12 +88,21 @@ const Profile: NextPage<IProps> = ({ userData }) => {
 
 export default Profile;
 
-export const getServerSideProps = async ({ params: { id } }: IParams) => {
+export const getStaticProps = async ({ params: { id } }: IParams) => {
 	const res = await axios.get(`${BASE_URL}/api/profile/${id}`);
 
 	return {
 		props: {
 			userData: res.data,
 		},
+	};
+};
+
+export const getStaticPaths = async () => {
+	const { data } = await axios.get(`${BASE_URL}/api/users`);
+
+	return {
+		paths: data.map((user: IUser) => ({ params: { id: user._id } })),
+		fallback: true,
 	};
 };

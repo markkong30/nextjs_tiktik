@@ -46,4 +46,11 @@ export const getServerSideProps = async ({ query: { topic } }: IParams) => {
 	};
 };
 
+// export const getStaticPaths = async () => {
+// 	return {
+// 		paths: [{ params: "/" }],
+// 		fallback: true,
+// 	};
+// };
+
 export default Home;

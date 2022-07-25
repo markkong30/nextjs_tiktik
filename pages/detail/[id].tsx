@@ -12,6 +12,7 @@ import { BASE_URL } from "../../utils";
 import LikeButton from "../../components/LikeButton";
 import useAuthStore from "../../store/authStore";
 import { Video } from "../../types";
+import { allPostsQuery } from "../../utils/queries";
 import axios from "axios";
 
 interface IProps {
@@ -168,12 +169,21 @@ const DetailPost = ({ postDetails }: IProps) => {
 
 export default DetailPost;
 
-export const getServerSideProps = async ({ params: { id } }: ParamsID) => {
+export const getStaticProps = async ({ params: { id } }: ParamsID) => {
 	const res = await axios.get(`${BASE_URL}/api/post/${id}`);
 
 	return {
 		props: {
 			postDetails: res.data,
 		},
+	};
+};
+
+export const getStaticPaths = async () => {
+	const { data } = await axios.get(`${BASE_URL}/api/post`);
+
+	return {
+		paths: data.map((video: Video) => ({ params: { id: video._id } })),
+		fallback: false,
 	};
 };
