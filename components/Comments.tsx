@@ -23,13 +23,7 @@ interface IComment {
 	postedBy: { _ref?: string; _id?: string };
 }
 
-const Comments: NextPage<IProps> = ({
-	comment,
-	comments,
-	setComment,
-	addComment,
-	isPostingComment,
-}) => {
+const Comments: NextPage<IProps> = ({ comment, comments, setComment, addComment, isPostingComment }) => {
 	const { allUsers, userProfile }: any = useAuthStore();
 
 	return (
@@ -37,7 +31,7 @@ const Comments: NextPage<IProps> = ({
 			<div className="overflow-scroll lg:h-[457px]">
 				{comments?.length > 0 ? (
 					comments?.map((item: IComment, idx: number) => (
-						<>
+						<div className="mb-2">
 							{allUsers?.map(
 								(user: IUser) =>
 									user._id === (item.postedBy._ref || item.postedBy._id) && (
@@ -66,7 +60,7 @@ const Comments: NextPage<IProps> = ({
 										</div>
 									)
 							)}
-						</>
+						</div>
 					))
 				) : (
 					<NoResults text="No Comments Yet!" />
