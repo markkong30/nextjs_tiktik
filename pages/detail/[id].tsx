@@ -27,7 +27,7 @@ interface ParamsID {
 
 const DetailPost = ({ postDetails }: IProps) => {
 	const [post, setPost] = useState(postDetails);
-	const [isPlaying, setIsPlaying] = useState(false);
+	const [isPlaying, setIsPlaying] = useState(true);
 	const [isVideoMuted, setIsVideoMuted] = useState(false);
 	const videoRef = useRef<HTMLVideoElement>(null);
 	const [comment, setComment] = useState("");
@@ -103,6 +103,7 @@ const DetailPost = ({ postDetails }: IProps) => {
 							ref={videoRef}
 							onClick={onVideoClick}
 							loop
+							autoPlay
 							src={post?.video?.asset.url}
 							className=" h-full cursor-pointer"
 						></video>

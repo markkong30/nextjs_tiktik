@@ -8,6 +8,7 @@ import { GoVerified } from "react-icons/go";
 import { BsPlay } from "react-icons/bs";
 
 import { Video } from "./../types";
+import { useInView } from "react-intersection-observer";
 
 interface IProps {
 	post: Video;
@@ -21,6 +22,19 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
 	const [isHover, setIsHover] = useState(false);
 	const [isVideoMuted, setIsVideoMuted] = useState(false);
 	const videoRef = useRef<HTMLVideoElement>(null);
+	const [ref, inView] = useInView({
+		threshold: 0.3,
+	});
+
+	useEffect(() => {
+		if (inView) {
+			videoRef?.current?.play();
+			setIsPlaying(true);
+		} else {
+			videoRef?.current?.pause();
+			setIsPlaying(false);
+		}
+	}, [inView]);
 
 	const onVideoPress = (e: React.MouseEvent<HTMLElement>) => {
 		// e.stopPropagation();
@@ -47,7 +61,7 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
 	};
 
 	return (
-		<div className="flex flex-col border-b-2 border-gray-200 pb-6">
+		<div className="flex flex-col border-b-2 border-gray-200 pb-6" ref={ref}>
 			<div>
 				<div className="flex gap-3 p-2 cursor-pointer font-semibold rounded ">
 					<Link href={`/profile/${postedBy?._id}`}>
@@ -84,6 +98,7 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
 					<Link href={`/detail/${post._id}`}>
 						<video
 							loop
+							muted
 							ref={videoRef}
 							src={video.asset.url}
 							className="xl:w-[800px] h-[300px] md:h-[400px] lg:h-[528px] w-[300px] sm:w-[450px] md:w-[600px] lg:w-[700px] rounded-2xl cursor-pointer bg-gray-100"
